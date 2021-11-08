@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from gymlog import views
+from app_authorization.views import login_view, logout_view, signup_view, profile_view, edit_profile_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("login/", login_view, name="login"),
+    path("logout/", logout_view, name="logout"),
+    path("signup/", signup_view, name="signup"),
+    path('profile/<int:user_id>/', profile_view),
+    path('editprofile/<int:user_id>/', edit_profile_view),
+    path('', views.navbar_view),
+    path("", views.index, name="homepage"),
 ]
